@@ -3,29 +3,31 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const Clock = () => {
-  const [breakLength, setBreakLength] = useState("5");
-  const [sessionLength, setSessionLength] = useState("25");
-  const [time, setTimerLength] = useState("60");
+  const [breakLength, setBreakLength] = useState("300");
+  const [sessionLength, setSessionLength] = useState("1500");
+  const [time, setTimerLength] = useState("5");
 
   const clickHandler = () => {
     console.log("Clicked!!");
   };
 
   const resetHandler = () => {
-    setBreakLength("5");
-    setSessionLength("25");
-    setTimerLength("25")
+    setBreakLength("300");
+    setSessionLength("1500");
+    setTimerLength("1500");
   };
 
-  var seconds = time * 60;
-  var sec = seconds % 60;
-  var min = parseInt(seconds / 60);
-
-  if (sec.toString().length == 1) {
-    sec = "0" + sec;
-  }
-
-  const timeFormatted = min + ":" + sec;
+  const startHandler = () => {
+      if (time > 0) {
+      setInterval(
+        () => setTimerLength((previousTime) => previousTime - 1),
+        1000
+      );
+      console.log(time)
+    } else {
+      setTimerLength("BOOOOM!");
+    }
+  };
 
   return (
     <div className="App">
@@ -47,9 +49,13 @@ const Clock = () => {
         Session Increase
       </div>
       <div id={"timer-label"}>Session Timer</div>
-      <div id={"time-left"}>{timeFormatted}</div>
-      <div id={"start_stop"} onClick={clickHandler}>Start/Stop</div>
-      <div id={"reset"} onClick={resetHandler}>Reset</div>
+      <div id={"time-left"}>{time}</div>
+      <div id={"start_stop"} onClick={startHandler}>
+        Start/Stop
+      </div>
+      <div id={"reset"} onClick={resetHandler}>
+        Reset
+      </div>
     </div>
   );
 };
