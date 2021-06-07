@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 const Clock = () => {
-  const [breakLength, setBreakLength] = useState(300);
-  const [sessionLength, setSessionLength] = useState(1500);
+  const [isActive, setIsActive] = useState(false);
+  const [breakLength, setBreakLength] = useState(5);
+  const [sessionLength, setSessionLength] = useState(25);
   const [breakTime, setBreakTimeLength] = useState(breakLength);
   const [sessionTime, setSessionTimerLength] = useState(sessionLength);
 
@@ -24,24 +25,21 @@ const Clock = () => {
     setSessionLength((previousLength) => previousLength + 1);
     setSessionTimerLength((previousLength) => previousLength + 1);
   };
-
-  const resetHandler = () => {
-    setBreakLength(300);
-    setSessionLength(1500);
-    setBreakTimeLength(300);
-    setSessionTimerLength(1500);
-  };
+  var interval;
 
   const startHandler = () => {
-    if (sessionTime > 0) {
-      setInterval(
-        () => setSessionTimerLength((previousTime) => previousTime - 1),
-        1000
-      );
-      console.log(sessionTime);
-    } else {
-      setSessionLength("BOOOOM!");
-    }
+    interval = setInterval(
+      () => setSessionTimerLength((previousTime) => previousTime - 1),
+      1000
+    );
+  };
+
+  const resetHandler = () => {
+    clearInterval(startHandler(interval));
+    setBreakLength(5);
+    setSessionLength(25);
+    setBreakTimeLength(5);
+    setSessionTimerLength(25);
   };
 
   return (
