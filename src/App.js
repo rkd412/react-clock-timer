@@ -14,7 +14,7 @@ const Clock = () => {
   const [sessionTime, setSessionTimerLength] = useState(sessionLength * 60);
 
   useEffect(() => {
-    if (sessionTime === 0) {
+    if (sessionTime < 0) {
       clearInterval(sessionInterval);
       setIsSession(false);
       breakInterval = setInterval(
@@ -24,7 +24,7 @@ const Clock = () => {
       setSessionTimerLength(sessionLength * 60);
     }
 
-    if (breakTime === 0) {
+    if (breakTime < 0) {
       clearInterval(breakInterval);
       setBreakTimerLength(breakLength * 60);
       setIsSession(true);
@@ -34,6 +34,10 @@ const Clock = () => {
 
   var sessionMin = parseInt(sessionTime / 60);
   var sessionSec = sessionTime % 60;
+  if (sessionMin.toString().length === 1) {
+    sessionMin = "0" + sessionMin;
+  }
+  var sessionTimeFormatted = sessionMin + ":" + sessionSec;
   if (sessionSec.toString().length === 1) {
     sessionSec = "0" + sessionSec;
   }
@@ -41,6 +45,9 @@ const Clock = () => {
 
   var breakMin = parseInt(breakTime / 60);
   var breakSec = breakTime % 60;
+  if (breakMin.toString().length === 1) {
+    breakMin = "0" + breakMin;
+  }
   if (breakSec.toString().length === 1) {
     breakSec = "0" + breakSec;
   }
