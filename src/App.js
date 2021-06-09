@@ -2,25 +2,54 @@ import React, { useState, useEffect } from "react";
 
 import "./App.css";
 
-var interval;
+var sessionInterval;
+var breakInterval;
 
 const Clock = () => {
   const [isActive, setIsActive] = useState(false);
+  const [isSession, setIsSession] = useState(true);
   const [breakLength, setBreakLength] = useState(5);
   const [sessionLength, setSessionLength] = useState(25);
-  const [breakTime, setBreakTimeLength] = useState(breakLength * 60);
+  const [breakTime, setBreakTimerLength] = useState(breakLength * 60);
   const [sessionTime, setSessionTimerLength] = useState(sessionLength * 60);
 
-  var min = parseInt(sessionTime / 60);
-  var sec = sessionTime % 60;
-  if (sec.toString().length == 1) {
-    sec = "0" + sec;
+  useEffect(() => {
+    if (sessionTime === 0) {
+      clearInterval(sessionInterval);
+      setIsSession(false);
+      breakInterval = setInterval(
+        () => setBreakTimerLength((previousTime) => previousTime - 1),
+        1000
+      );
+      setSessionTimerLength(sessionLength * 60);
+    }
+
+    if (breakTime === 0) {
+      clearInterval(breakInterval);
+      setBreakTimerLength(breakLength * 60);
+      setIsSession(true);
+      setIsActive(false);
+    }
+  });
+
+  var sessionMin = parseInt(sessionTime / 60);
+  var sessionSec = sessionTime % 60;
+  if (sessionSec.toString().length === 1) {
+    sessionSec = "0" + sessionSec;
   }
+  var sessionTimeFormatted = sessionMin + ":" + sessionSec;
+
+  var breakMin = parseInt(breakTime / 60);
+  var breakSec = breakTime % 60;
+  if (breakSec.toString().length === 1) {
+    breakSec = "0" + breakSec;
+  }
+  var breakTimeFormatted = breakMin + ":" + breakSec;
 
   const decBreakHandler = () => {
     if (breakLength > 1 && isActive === false) {
       setBreakLength((previousLength) => previousLength - 1);
-      setBreakTimeLength((previousLength) => previousLength - 60);
+      setBreakTimerLength((previousLength) => previousLength - 60);
     } else {
       setBreakLength(breakLength);
     }
@@ -28,7 +57,7 @@ const Clock = () => {
   const incBreakHandler = () => {
     if (breakLength < 60 && isActive === false) {
       setBreakLength((previousLength) => previousLength + 1);
-      setBreakTimeLength((previousLength) => previousLength + 60);
+      setBreakTimerLength((previousLength) => previousLength + 60);
     } else {
       setBreakLength(breakLength);
     }
@@ -52,27 +81,26 @@ const Clock = () => {
 
   const startHandler = () => {
     setIsActive(true);
-    interval = setInterval(
+    sessionInterval = setInterval(
       () => setSessionTimerLength((previousTime) => previousTime - 1),
       1000
     );
   };
 
-  if (sessionTime === 0) {
-    clearInterval(interval);
-  }
-
   const pauseHandler = () => {
     setIsActive(false);
-    clearInterval(interval);
+    clearInterval(sessionInterval);
+    clearInterval(breakInterval);
   };
 
   const resetHandler = () => {
     setIsActive(false);
-    clearInterval(interval);
+    setIsSession(true);
+    clearInterval(sessionInterval);
+    clearInterval(breakInterval);
     setBreakLength(5);
     setSessionLength(25);
-    setBreakTimeLength(5);
+    setBreakTimerLength(300);
     setSessionTimerLength(1500);
   };
 
@@ -95,9 +123,9 @@ const Clock = () => {
       <div id={"session-increment"} onClick={incSessionHandler}>
         Session Increase
       </div>
-      <div id={"timer-label"}>Session Timer</div>
+      <div id={"timer-label"}>{isSession ? "Session" : "Break"}</div>
       <div id={"time-left"}>
-        {min}:{sec}
+        {isSession ? sessionTimeFormatted : breakTimeFormatted}
       </div>
       <div id={"start_stop"} onClick={isActive ? pauseHandler : startHandler}>
         Start/Stop
