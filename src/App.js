@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 
 var interval;
+var previousTime;
 
 const Clock = () => {
   const [isActive, setIsActive] = useState(false);
@@ -51,6 +52,10 @@ const Clock = () => {
       1000
     );
   };
+
+  if (sessionTime === 0) {
+    clearInterval(interval);
+  }
 
   const pauseHandler = () => {
     setIsActive(false);
