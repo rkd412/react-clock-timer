@@ -14,7 +14,8 @@ const Clock = () => {
   const [sessionTime, setSessionTimerLength] = useState(sessionLength * 60);
 
   useEffect(() => {
-    if (sessionTime < 0) {
+    if (sessionTime === 0) {
+      document.getElementById("beep").play();
       clearInterval(sessionInterval);
       setIsSession(false);
       breakInterval = setInterval(
@@ -24,7 +25,8 @@ const Clock = () => {
       setSessionTimerLength(sessionLength * 60);
     }
 
-    if (breakTime < 0) {
+    if (breakTime === 0) {
+      document.getElementById("beep").play();
       clearInterval(breakInterval);
       setBreakTimerLength(breakLength * 60);
       setIsSession(true);
@@ -101,6 +103,8 @@ const Clock = () => {
   };
 
   const resetHandler = () => {
+    document.getElementById("beep").pause();
+    document.getElementById("beep").currentTime = 0;
     setIsActive(false);
     setIsSession(true);
     clearInterval(sessionInterval);
@@ -140,6 +144,13 @@ const Clock = () => {
       <div id={"reset"} onClick={resetHandler}>
         Reset
       </div>
+      <audio
+        id={"beep"}
+        src={
+          "https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+        }
+        type={"audio/mpeg"}
+      />
     </div>
   );
 };
