@@ -1,0 +1,104 @@
+body {
+  background: black;
+  user-select: none;
+}
+
+.App {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: grey;
+}
+
+#main-title {
+  font-size: 50px;
+  background: orange;
+  text-align: center;
+}
+
+#length-controls-container {
+  background: cyan;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+#break-container {
+  background: chartreuse;
+}
+
+#break-label {
+  font-size: 25px;
+  background: tan;
+  text-align: center;
+}
+
+#break-length {
+  background: pink;
+}
+
+#break-decrement {
+  color: teal;
+  cursor: pointer;
+}
+
+#break-increment {
+  color: teal;
+  cursor: pointer;
+}
+
+#session-container {
+  background: chartreuse;
+}
+
+#session-label {
+  font-size: 25px;
+  background: tan;
+  text-align: center;
+}
+
+#session-length {
+  background: indigo;
+}
+
+#session-decrement {
+  color: teal;
+  cursor: pointer;
+}
+
+#session-increment {
+  color: teal;
+  cursor: pointer;
+}
+
+#clock-container {
+  background: rgb(207, 20, 20);
+  border-radius: 50%;
+  width: 30vh;
+  height: 30vh;
+  color: rgb(240, 233, 233);
+  padding: 10vh;
+  line-height: 5vh;
+  border: 3px solid green;
+  text-align: center;
+  font-size: 25px;
+}
+
+#timer-label {
+  background: brown;
+}
+
+#time-left {
+  background: blue;
+}
+
+#reset {
+  cursor: pointer;
+  background: red;
+}
+
+#start_stop {
+  cursor: pointer;
+  background: yellow;
+}

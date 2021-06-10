@@ -117,33 +117,45 @@ const Clock = () => {
 
   return (
     <div className="App">
-      <div id={"break-label"}>Break Length</div>
-      <div id={"break-length"}>{breakLength}</div>
-      <div id={"break-decrement"} onClick={decBreakHandler}>
-        Break Decrease
-      </div>
-      <div id={"break-increment"} onClick={incBreakHandler}>
-        Break Increase
+      <div id="main-title">Pomodoro Timer</div>
+
+      <div id={"length-controls-container"}>
+        <div id={"break-container"}>
+          <div id={"break-label"}>Break Length</div>
+          <div id={"break-length"}>{breakLength}</div>
+          <div id={"break-decrement"} onClick={decBreakHandler}>
+            -
+          </div>
+          <div id={"break-increment"} onClick={incBreakHandler}>
+            +
+          </div>
+        </div>
+
+        <div id={"session-container"}>
+          <div id={"session-label"}>Session Length</div>
+          <div id={"session-length"}>{sessionLength}</div>
+          <div id={"session-decrement"} onClick={decSessionHandler}>
+            -
+          </div>
+          <div id={"session-increment"} onClick={incSessionHandler}>
+            +
+          </div>
+        </div>
       </div>
 
-      <div id={"session-label"}>Session Length</div>
-      <div id={"session-length"}>{sessionLength}</div>
-      <div id={"session-decrement"} onClick={decSessionHandler}>
-        Session Decrease
+      <div id={"clock-container"}>
+        <div id={"timer-label"}>{isSession ? "Session" : "Break"}</div>
+        <div id={"time-left"}>
+          {isSession ? sessionTimeFormatted : breakTimeFormatted}
+        </div>
+        <div id={"start_stop"} onClick={isActive ? pauseHandler : startHandler}>
+          Start/Stop
+        </div>
+        <div id={"reset"} onClick={resetHandler}>
+          Reset
+        </div>
       </div>
-      <div id={"session-increment"} onClick={incSessionHandler}>
-        Session Increase
-      </div>
-      <div id={"timer-label"}>{isSession ? "Session" : "Break"}</div>
-      <div id={"time-left"}>
-        {isSession ? sessionTimeFormatted : breakTimeFormatted}
-      </div>
-      <div id={"start_stop"} onClick={isActive ? pauseHandler : startHandler}>
-        Start/Stop
-      </div>
-      <div id={"reset"} onClick={resetHandler}>
-        Reset
-      </div>
+
       <audio
         id={"beep"}
         src={
