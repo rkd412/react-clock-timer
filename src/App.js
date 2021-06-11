@@ -123,22 +123,26 @@ const Clock = () => {
         <div id={"break-container"}>
           <div id={"break-label"}>Break Length</div>
           <div id={"break-length"}>{breakLength}</div>
-          <div id={"break-decrement"} onClick={decBreakHandler}>
-            -
-          </div>
-          <div id={"break-increment"} onClick={incBreakHandler}>
-            +
+          <div id={"break-buttons"}>
+            <div id={"break-decrement"} onClick={decBreakHandler}>
+              -
+            </div>
+            <div id={"break-increment"} onClick={incBreakHandler}>
+              +
+            </div>
           </div>
         </div>
 
         <div id={"session-container"}>
           <div id={"session-label"}>Session Length</div>
           <div id={"session-length"}>{sessionLength}</div>
-          <div id={"session-decrement"} onClick={decSessionHandler}>
-            -
-          </div>
-          <div id={"session-increment"} onClick={incSessionHandler}>
-            +
+          <div id={"session-buttons"}>
+            <div id={"session-decrement"} onClick={decSessionHandler}>
+              -
+            </div>
+            <div id={"session-increment"} onClick={incSessionHandler}>
+              +
+            </div>
           </div>
         </div>
       </div>

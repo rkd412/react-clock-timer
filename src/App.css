@@ -1,6 +1,7 @@
 body {
-  background: black;
+  background: #453c19;
   user-select: none;
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7);
 }
 
 .App {
@@ -8,68 +9,93 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: grey;
+  background: #453c19;
+  padding: 40px;
 }
 
 #main-title {
-  font-size: 50px;
-  background: orange;
+  font-size: 75px;
+  color: #ebc6bb;
   text-align: center;
+  margin: 10px 10px 50px 10px;
 }
 
 #length-controls-container {
-  background: cyan;
   display: flex;
   justify-content: space-evenly;
   text-align: center;
-}
-
-#break-container {
-  background: chartreuse;
+  margin: 20px;
+  color: #ebc6bb;
 }
 
 #break-label {
-  font-size: 25px;
-  background: tan;
+  font-size: 30px;
   text-align: center;
+  margin: 10px 10px 30px 10px;
+}
+
+#break-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  margin: 10px;
 }
 
 #break-length {
-  background: pink;
+  font-size: 32px;
 }
 
 #break-decrement {
-  color: teal;
   cursor: pointer;
+  font-size: 50px;
+}
+
+#break-decrement:hover {
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.952);
 }
 
 #break-increment {
-  color: teal;
   cursor: pointer;
+  font-size: 50px;
 }
 
-#session-container {
-  background: chartreuse;
+#break-increment:hover {
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.952);
 }
 
 #session-label {
-  font-size: 25px;
-  background: tan;
+  font-size: 30px;
   text-align: center;
+  margin: 10px 10px 30px 10px;
 }
 
 #session-length {
-  background: indigo;
+  font-size: 32px;
+}
+
+#session-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  margin: 10px;
 }
 
 #session-decrement {
-  color: teal;
   cursor: pointer;
+  font-size: 50px;
+}
+
+#session-decrement:hover {
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.952);
 }
 
 #session-increment {
-  color: teal;
   cursor: pointer;
+  font-size: 50px;
+}
+
+#session-increment:hover {
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.952);
 }
 
 #clock-container {
@@ -77,28 +103,131 @@ body {
   border-radius: 50%;
   width: 30vh;
   height: 30vh;
-  color: rgb(240, 233, 233);
+  color: #ebc6bb;
   padding: 10vh;
   line-height: 5vh;
-  border: 3px solid green;
+  border: 10px solid #7e4729;
   text-align: center;
-  font-size: 25px;
+  font-size: 32px;
+  margin: 40px 20px 40px 20px;
 }
 
 #timer-label {
-  background: brown;
+  font-size: 50px;
 }
 
 #time-left {
-  background: blue;
+  font-size: 100px;
+  margin: 50px;
 }
 
 #reset {
   cursor: pointer;
-  background: red;
+  margin: 20px;
+}
+
+#reset:hover {
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.952);
 }
 
 #start_stop {
   cursor: pointer;
-  background: yellow;
+  margin: 20px;
+}
+
+#start_stop:hover {
+  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.952);
+}
+
+@media screen and (max-width: 800px) {
+  #main-title {
+    font-size: 35px;
+    margin: 10px 10px 20px 10px;
+  }
+
+  #length-controls-container {
+    margin: 10px 10px 10px 10px;
+  }
+
+  #break-label {
+    font-size: 15px;
+    text-align: center;
+    margin: 10px 10px 20px 10px;
+  }
+
+  #break-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 10px;
+  }
+
+  #break-length {
+    font-size: 20px;
+  }
+
+  #break-decrement {
+    font-size: 25px;
+  }
+
+  #break-increment {
+    font-size: 25px;
+  }
+
+  #session-label {
+    font-size: 15px;
+    text-align: center;
+    margin: 10px 10px 20px 10px;
+  }
+
+  #session-length {
+    font-size: 20px;
+  }
+
+  #session-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 10px;
+  }
+
+  #session-decrement {
+    font-size: 25px;
+  }
+
+  #session-increment {
+    font-size: 25px;
+  }
+
+  #clock-container {
+    background: rgb(207, 20, 20);
+    border-radius: 50%;
+    width: 30vh;
+    height: 30vh;
+    color: #ebc6bb;
+    padding: 10vh;
+    line-height: 5vh;
+    border: 10px solid #7e4729;
+    text-align: center;
+    font-size: 10px;
+    margin: 10px 10px 10px 10px;
+  }
+
+  #timer-label {
+    font-size: 30px;
+  }
+
+  #time-left {
+    font-size: 50px;
+    margin: 30px;
+  }
+  #start_stop {
+    font-size: 20px;
+    margin: 20px;
+  }
+
+  #reset {
+    font-size: 20px;
+    margin: 20px;
+  }
 }
